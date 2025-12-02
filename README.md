@@ -21,6 +21,11 @@ Copy the contents of [`mass-hide-story.js`](mass-hide-story.js), paste it into t
 
 This script automatically clicks all visible checkboxes on Instagram's "Hide Story and Live From" page, allowing you to quickly select multiple users at once instead of clicking each one individually.
 
+**Features:**
+- Shows progress in the console (`Progress: 5/100 (5%)`)
+- 50ms delay between clicks to prevent freezing
+- Final alert when complete
+
 ## ⚠️ Disclaimer
 
 - This tool is for personal use only

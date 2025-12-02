@@ -1,4 +1,4 @@
-javascript:(function(){
+javascript:(async function(){
   'use strict';
 
   const icons = document.querySelectorAll(
@@ -9,6 +9,9 @@ javascript:(function(){
     alert("No checkboxes found.");
     return;
   }
+
+  const total = icons.length;
+  console.log(`Found ${total} checkboxes. Starting...`);
 
   function findClickable(el) {
     while (el && el !== document.body) {
@@ -54,16 +57,23 @@ javascript:(function(){
     el.dispatchEvent(click);
   }
 
+  function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
   let count = 0;
 
-  icons.forEach(icon => {
+  for (const icon of icons) {
     const clickable = findClickable(icon);
-    if (!clickable) return;
+    if (!clickable) continue;
 
     realClick(clickable);
     count++;
-  });
+    console.log(`Progress: ${count}/${total} (${Math.round(count/total*100)}%)`);
+    await delay(50);
+  }
 
-  alert(`Clicked ${count} checkboxes!`);
+  console.log(`Done! Clicked ${count} checkboxes.`);
+  alert(`Done! Clicked ${count} checkboxes.`);
 })();
 
