@@ -1,17 +1,22 @@
 javascript:(async function(){
   'use strict';
 
-  const icons = document.querySelectorAll(
-    'div[data-bloks-name="ig.components.Icon"][style*="circle__outline__"]'
-  );
+  // Set to "check" to select unchecked boxes, or "uncheck" to deselect checked boxes
+  const MODE = "uncheck";
+
+  const selector = MODE === "uncheck"
+    ? 'div[data-bloks-name="ig.components.Icon"][style*="circle-check__filled__"]'
+    : 'div[data-bloks-name="ig.components.Icon"][style*="circle__outline__"]';
+
+  const icons = document.querySelectorAll(selector);
 
   if (icons.length === 0) {
-    alert("No checkboxes found.");
+    alert(`No ${MODE === "uncheck" ? "checked" : "unchecked"} checkboxes found.`);
     return;
   }
 
   const total = icons.length;
-  console.log(`Found ${total} checkboxes. Starting...`);
+  console.log(`[${MODE.toUpperCase()} MODE] Found ${total} checkboxes. Starting...`);
 
   function findClickable(el) {
     while (el && el !== document.body) {
@@ -73,7 +78,7 @@ javascript:(async function(){
     await delay(50);
   }
 
-  console.log(`Done! Clicked ${count} checkboxes.`);
-  alert(`Done! Clicked ${count} checkboxes.`);
+  console.log(`Done! ${MODE === "uncheck" ? "Unchecked" : "Checked"} ${count} checkboxes.`);
+  alert(`Done! ${MODE === "uncheck" ? "Unchecked" : "Checked"} ${count} checkboxes.`);
 })();
 
